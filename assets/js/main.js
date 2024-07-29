@@ -110,13 +110,17 @@ submit.addEventListener('click', function (e) {
 
         // Days calculations
         if (day > currentDay) {
-            currentDay = currentDay + daysInMonth[currentMonth - 1];
+            // If the input day is greater than the current day, it means the birthday hasn't occurred this month yet.
+            currentDay = currentDay + daysInMonth[currentMonth - 1]; 
+            // Therefore, it adds the number of days in the previous month to the current day and decrements the current month by 1.
             currentMonth = currentMonth - 1;
         };
 
         // Months calculation
         if (month > currentMonth) {
+            // If the input month is greater than the current month, it means the birthday hasn't occurred this year yet.
             currentMonth = currentMonth + 12;
+            // Therefore, it adds 12 to the current month and decrements the current year by 1.
             currentYear = currentYear - 1;
         };
 
