@@ -150,3 +150,71 @@ function toggleNightMode() {
     let ageCalc = document.getElementById('dark_mode');
     ageCalc.classList.toggle('dark');
 }
+
+
+
+/*
+Let's use an example to illustrate the days and months calculations.
+
+Example Scenario
+Today's Date: July 15, 2024
+Input Date (Birthday): August 20, 2023
+*/
+
+/* 
+
+*======================== Days Calculation =======================*
+
+// 1. Check if Day is Greater:
+
+if (day > currentDay) { } // 20 > 15
+ // -- Here, day is 20 and currentDay is 15. Since 20 is greater than 15, we need to adjust.
+
+// 2.Adjust for Days:
+if (day > currentDay) {
+    currentDay = currentDay + daysInMonth[currentMonth - 1]; // currentDay = 15 + 31
+    currentMonth = currentMonth - 1; // currentMonth = 7 - 1
+}
+    // -- Assume daysInMonth[currentMonth - 1] gives us the number of days in the previous month (June in this case).
+    // -- Therefore, currentDay becomes 15 + 31 = 46 (we add 31 days of June).
+    // -- 'currentMonth' is decremented by 1, making it 6 (June).
+
+    // *Adjusted Values*:
+
+     // currentDay = 46
+     // currentMonth = 6 (June)
+
+
+*======================== Months Calculation =======================*
+
+// 1. Check if Month is Greater:
+
+if (month > currentMonth) { } // 8 > 6
+// -- Here, month is 8 and currentMonth is 6. Since 8 is greater than 6, we need to adjust.
+
+// 2. Adjust for Months:
+
+if (month > currentMonth) {
+currentMonth = currentMonth + 12; // currentMonth = 6 + 12 = 18
+currentYear = currentYear - 1; // currentYear = 2024 - 1 = 2023
+}
+// -- We add 12 months to currentMonth, making it 18. This adjustment simulates that we’re calculating the date difference from a previous year.
+// -- We decrement currentYear by 1, so currentYear becomes 2023
+
+    // *Adjusted Values:*
+
+     // currentMonth = 18
+     // currentYear = 2023
+
+
+
+*======================== Final Age Calculation =======================*
+
+// 1. Calculate Final Age:
+
+let ageDay = currentDay - day; // 46 - 20 = 26
+let ageMonth = currentMonth - month; // 18 - 8 = 10
+let ageYear = currentYear - year; // 2023 - 2023 = 0
+
+
+*/
