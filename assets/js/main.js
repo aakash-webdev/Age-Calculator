@@ -140,6 +140,7 @@ submit.addEventListener('click', function (e) {
             yearResult.innerHTML = ageYear;
             monthResult.innerHTML = ageMonth;
             dayResult.innerHTML = ageDay;
+            submit.style.backgroundColor = '#00adb5';
         };
     }
 });
