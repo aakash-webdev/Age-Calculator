@@ -1,0 +1,391 @@
+//* ========================================== Common SCSS starts here ========================================= */
+
+// SCSS Variables
+$black: #222831;
+$dark-grey: #393e46;
+$light-grey: #e9e9e9;
+$blue: #00adb5;
+$font: "Prompt", sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  display: inline-block;
+}
+
+body {
+  font-family: "Prompt", sans-serif;
+  color: $black;
+}
+
+/* ======================================== Common SCSS ends here ========================================= */
+
+/* -/-/-/-/-/-/-/-/-/-/- Main SCSS starts here -/-/-/-/-/-/-/-/-/-/- */
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: hsla(298, 68%, 90%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(298, 68%, 90%, 1) 0%,
+    hsla(30, 82%, 91%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(298, 68%, 90%, 1) 0%,
+    hsla(30, 82%, 91%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(298, 68%, 90%, 1) 0%,
+    hsla(30, 82%, 91%, 1) 100%
+  );
+
+  // Night Mode Toggle Slider
+  .theme_toggle {
+    margin: 20px 0;
+
+    .switch {
+      font-size: 17px;
+      position: relative;
+      display: inline-block;
+      width: 64px;
+      height: 34px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $blue;
+      transition: 0.4s;
+      border-radius: 30px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 30px;
+      width: 30px;
+      border-radius: 20px;
+      left: 2px;
+      bottom: 2px;
+      z-index: 2;
+      background-color: #e8e8e8;
+      transition: 0.4s;
+    }
+
+    .sun svg {
+      position: absolute;
+      top: 6px;
+      left: 36px;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+    }
+
+    .moon svg {
+      fill: #73c0fc;
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+    }
+
+    /* .switch:hover */
+    .sun svg {
+      animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: rotate(0);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* .switch:hover */
+    .moon svg {
+      animation: tilt 5s linear infinite;
+    }
+
+    @keyframes tilt {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-10deg);
+      }
+
+      75% {
+        transform: rotate(10deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+
+    .input:checked + .slider {
+      background-color: $dark-grey;
+    }
+
+    .input:focus + .slider {
+      box-shadow: 0 0 1px $dark-grey;
+    }
+
+    .input:checked + .slider:before {
+      transform: translateX(30px);
+    }
+
+    /* actions */
+
+    .ui-switch input:checked + .slider .circle {
+      left: calc(100% - var(--circle-diameter));
+      background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iMjAiIHdpZHRoPSIyMCIgdmlld0JveD0iMCAwIDIwIDIwIj4KICAgIDxwYXRoIGZpbGw9IiNmZmYiCiAgICAgICAgZD0iTTQuMiAyLjVsLS43IDEuOC0xLjguNyAxLjguNy43IDEuOC42LTEuOEw2LjcgNWwtMS45LS43LS42LTEuOHptMTUgOC4zYTYuNyA2LjcgMCAxMS02LjYtNi42IDUuOCA1LjggMCAwMDYuNiA2LjZ6IiAvPgo8L3N2Zz4=");
+    }
+
+    .ui-switch input:active + .slider .circle::before {
+      -webkit-transition: 0s;
+      -o-transition: 0s;
+      transition: 0s;
+      opacity: 1;
+      width: 0;
+      height: 0;
+    }
+  }
+
+  .age_calc {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+      rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+    padding: 20px 50px;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 70vh;
+    border-radius: 0 80px 0 80px;
+    transition: 0.5s;
+
+    // ------------------------------------------ Left Side SCSS ------------------------------------------ //
+    .left_section {
+      border-right: 2px solid $light-grey;
+      padding-right: 30px;
+
+      #main_form {
+        .date_input,
+        .month_input,
+        .year_input {
+          margin: 10px 0;
+
+          .error {
+            height: 20px;
+            color: red;
+            font-size: 13px;
+            margin-top: 1px;
+            font-style: italic;
+            line-height: 19px;
+          }
+        }
+
+        label {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 20px;
+          line-height: 26px;
+          font-weight: 500;
+          letter-spacing: 0.05em;
+        }
+
+        input {
+          padding: 10px 15px;
+          font-size: 18px;
+          line-height: 24px;
+          outline: none;
+          border: 2px solid $light-grey;
+          border-radius: 8px;
+          width: 280px;
+
+          &::placeholder {
+            font-size: 14px;
+            line-height: 20px;
+            font-family: $font;
+          }
+        }
+
+        .btn {
+          display: flex;
+          margin: 20px auto 0;
+          padding: 17px 40px;
+          border-radius: 50px;
+          cursor: pointer;
+          border: 0;
+          background-color: $light-grey;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+            rgba(0, 0, 0, 0.23) 0px 3px 6px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          font-size: 15px;
+          transition: all 0.5s ease;
+          &:hover {
+            letter-spacing: 3px;
+            background-color: $blue;
+            color: hsl(0, 0%, 100%);
+            box-shadow: $blue 0px 7px 29px 0px;
+          }
+          &:active {
+            letter-spacing: 3px;
+            background-color: $blue;
+            color: hsl(0, 0%, 100%);
+            box-shadow: $blue 0px 0px 0px 0px;
+            transform: translateY(10px);
+            transition: 100ms;
+          }
+        }
+      }
+    }
+
+    // ------------------------------------------ Right Side SCSS ------------------------------------------ //
+    .right_section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+
+      .art {
+        padding: 30px;
+        img {
+          max-width: 280px;
+          animation: slide-top 1.5s ease-in-out infinite alternate-reverse both;
+
+          @keyframes slide-top {
+            0% {
+              transform: translateY(0);
+            }
+            100% {
+              transform: translateY(-20px);
+            }
+          }
+        }
+      }
+
+      .result {
+        h2 {
+          font-size: 50px;
+          line-height: 56px;
+          margin-bottom: 10px;
+          font-style: italic;
+          span {
+            display: inline-block;
+            margin-right: 10px;
+            letter-spacing: 5px;
+            color: $blue;
+            width: 175px;
+            text-align: end;
+          }
+        }
+      }
+    }
+  }
+
+  #future_error {
+    display: block;
+    height: 22px;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 10px;
+    font-style: italic;
+    color: red;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.age_calc.dark {
+  background-color: $black;
+  color: white;
+}
+
+/* -/-/-/-/-/-/-/-/-/-/- Main SCSS ends here -/-/-/-/-/-/-/-/-/-/-/- */
+
+// -------------------- Media Query -------------------- //
+
+@media only screen and (max-width: 1199px) {
+  main .age_calc {
+    display: block;
+    justify-content: center;
+    padding: 20px 40px;
+    margin: 20px 50px;
+
+    .left_section {
+      display: flex;
+      border-right: 0px solid #e9e9e9;
+      border-bottom: 2px solid #e9e9e9;
+      padding: 0 0 20px;
+
+      justify-content: center;
+    }
+
+    .right_section {
+      display: block;
+    }
+  }
+
+  main .age_calc .left_section #main_form {
+    label {
+      font-size: 19px;
+      line-height: 25px;
+    }
+    input {
+      font-size: 14px;
+      line-height: 19px;
+    }
+  }
+
+  #main_form .btn {
+    padding: 15px 35px;
+  }
+  main .age_calc .right_section .art img {
+    /* max-width: 280px; */
+    max-width: 200px;
+  }
+  main .age_calc .right_section .result h2 {
+    /* font-size: 50px; */
+    /* line-height: 56px; */
+    font-size: 35px;
+    line-height: 41px;
+  }
+  main .age_calc .right_section .result h2 span {
+    /* width: 175px; */
+    width: 138px;
+  }
+}
