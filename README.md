@@ -1,7 +1,8 @@
 # 🕰️ Age Calculator
 An interactive age calculator web application that lets users calculate their age in years, months, and days. The application is designed with a user-friendly interface and offers a dark mode toggle for better user experience.
 
-<br>
+## Copyright :
+#### This project is hand coded by <a href="https://github.com/aakash-webdev">Aakash Peshavaria</a> (Me).
 
 ## 🚀 Features :
 - #### Responsive Design 📱: Optimized for both mobile and desktop views.
